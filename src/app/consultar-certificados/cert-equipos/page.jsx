@@ -63,7 +63,7 @@ export default function EquiposTable() {
 
     setLoading(true);
     try {
-      let url = `http://127.0.0.1:8000/api/consulta-certificados/equipos?`;
+      let url = `${API_URL}/api/consulta-certificados/equipos?`;
       const params = [];
       if (ruc.trim()) params.push(`ruc=${encodeURIComponent(ruc)}`);
       if (placa.trim()) params.push(`placa=${encodeURIComponent(placa)}`);
