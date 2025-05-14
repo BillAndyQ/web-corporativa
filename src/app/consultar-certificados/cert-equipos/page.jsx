@@ -60,7 +60,6 @@ export default function EquiposTable() {
       alert("Por favor, ingrese al menos un RUC o una Placa.");
       return;
     }
-
     setLoading(true);
     try {
       let url = `${API_URL}/api/consulta-certificados/equipos?`;
