@@ -146,7 +146,6 @@ function Secciones() {
                 <PhoneCall className="w-8 h-8 text-blue-600" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Teléfono</h3>
-                  <p className="text-gray-600">+51 976 225 732</p>
                 </div>
               </div>
 
@@ -155,7 +154,6 @@ function Secciones() {
                 <Mail className="w-8 h-8 text-blue-600" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600">ricardo.luycho@overhaulmining.com</p>
                 </div>
               </div>
 
