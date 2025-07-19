@@ -115,7 +115,8 @@ export default function ServicesPage() {
     ];
 
     // Enlace de WhatsApp común
-    const whatsappLink = "https://api.whatsapp.com/send/?phone=51976225732&text=Hola%2C+me+gustar%C3%ADa+recibir+una+cotizaci%C3%B3n+sobre+ensayo+no+destructivos.&type=phone_number&app_absent=0";
+    // const whatsappLink = "https://api.whatsapp.com/send/?phone=51976225732&text=Hola%2C+me+gustar%C3%ADa+recibir+una+cotizaci%C3%B3n+sobre+ensayo+no+destructivos.&type=phone_number&app_absent=0";
+    const whatsappLink = ""
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
