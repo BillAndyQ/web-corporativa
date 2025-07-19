@@ -40,7 +40,7 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin size={18} className="text-blue-400 mt-1" />
                 <span className="text-gray-400">
-                  Av. Manco Capac 1346 Los Baños del Inca - Cajamarca
+                  Cajamarca Perú
                 </span>
               </div>
             </div>

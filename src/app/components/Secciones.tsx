@@ -162,7 +162,7 @@ function Secciones() {
                 <Truck className="w-8 h-8 text-blue-600" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Oficina Principal</h3>
-                  <p className="text-gray-600">Av. Manco Capac 1346 Los Baños del Inca - Cajamarca</p>
+                  <p className="text-gray-600">Cajamarca Perú</p>
                 </div>
               </div>
             </div>
