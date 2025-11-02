@@ -2,7 +2,6 @@
 import React from 'react';
 //import Carousel from './components/Carousel';
 import ServiceCardCarousel from './serviceCardCarrusel';
-import Link from 'next/link';
 import Image from 'next/image';
 
 function SeccionServices() {
