@@ -14,9 +14,25 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
+        {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md hover:text-gray-500 focus:outline-none"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+
           <div className="flex-shrink-0 flex gap-5 items-center space-x-2">
-            <Image src="/logo.png" alt="Logo" width={100} height={100} priority quality={100} />
-            <Image src="/cert_iso-remove.png" alt="Certificación ISO" width={200} height={100} quality={100} priority />
+            <Image src="/logo.png" alt="Logo" width={90} height={100} priority quality={100} />
+            <Image src="/cert_iso-remove.png" alt="Certificación ISO" width={100} height={100} quality={100} priority />
+            <Link
+                href="/consultar-certificados"
+                className="flex items-center text-white bg-blue-500 rounded-md py-3 px-4 hover:bg-blue-600"
+              >
+              <span>Consultar certificado</span>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
@@ -46,23 +62,9 @@ const Navbar = () => {
             >
               <span className='text-sm'>Registro de participante</span>
             </Link>
-            <Link href="/consultar-certificados" className="flex items-center space-x-1 text-white bg-blue-500 rounded-md py-3 px-4 hover:bg-blue-600">
-              <Book className="w-5 h-5" />
-              <span className='text-sm'>Consultar certificado</span>
-            </Link>
-
-
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md hover:text-gray-500 focus:outline-none"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+          
         </div>
       </div>
 
@@ -106,13 +108,7 @@ const Navbar = () => {
               <Phone className="w-5 h-5" />
               <span>Contacto</span>
             </Link>
-            <Link
-              href="/consultar-certificados"
-              className="flex items-center space-x-1 text-white bg-blue-500 rounded-md py-3 px-4 hover:bg-blue-600"
-            >
-              <Book className="w-5 h-5" />
-              <span>Consultar certificado</span>
-            </Link>
+            
             <Link
               href="/registroParticipante"
               className="flex items-center space-x-1 text-white bg-blue-500 rounded-md py-3 px-4 hover:bg-blue-600"

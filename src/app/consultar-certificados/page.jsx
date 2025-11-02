@@ -9,11 +9,11 @@ export default function Home() {
         <p className="text-2xl font-bold text-center">
           Consultar validez de certificados
         </p>
-        <div className="flex gap-3 w-full pt-8 justify-center">
+        <div className="flex gap-3 w-full pt-8 justify-center px-4">
           <Link href={"/consultar-certificados/cert-person"}>
             <button
               type="button"
-              className="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800 flex items-center gap-2"
+              className="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800 flex items-center gap-2"
             >
               <FaUser /> {/* Ícono de usuario */}
               Certificaciones de personal
@@ -22,7 +22,7 @@ export default function Home() {
           <Link href={"/consultar-certificados/cert-equipos"}>
             <button
               type="button"
-              className="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800 flex items-center gap-2"
+              className="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800 flex items-center gap-2"
             >
               <FaCogs /> {/* Ícono de engranajes para máquinas */}
               Certificaciones de equipo
