@@ -5,7 +5,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface certPerson {
   dni: string;
@@ -16,8 +16,8 @@ interface certPerson {
   last_names: string;
 }
 
-// ✅ Este componente SÍ usa useSearchParams()
 function CertPersonContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [dni, setDni] = useState("");
   const [codigo, setCodigo] = useState("");
@@ -36,6 +36,7 @@ function CertPersonContent() {
     }
   };
 
+  // ✅ Cargar datos desde params
   useEffect(() => {
     const dniParam = searchParams.get("dni");
     const codigoParam = searchParams.get("codigo");
@@ -48,14 +49,26 @@ function CertPersonContent() {
     }
   }, [searchParams]);
 
+  // ✅ Actualiza los query params al hacer clic en “Buscar”
+  const handleSearch = () => {
+    if (!dni || !codigo) return;
+
+    // Construir nueva URL con los params
+    const newUrl = `?dni=${encodeURIComponent(dni)}&codigo=${encodeURIComponent(codigo)}`;
+    router.replace(newUrl); // o router.push(newUrl) si quieres que se pueda ir atrás
+
+    // Ejecutar búsqueda
+    fetchData(dni, codigo);
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h2 className="font-bold text-2xl mb-2">Certificaciones de Personal</h2>
       <div className="mb-4">
         <Input placeholder="Ingrese DNI" value={dni} onChange={(e) => setDni(e.target.value)} />
-        <Input placeholder="CODIGO" className="mt-2" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
+        <Input placeholder="Código" className="mt-2" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
       </div>
-      <Button onClick={() => fetchData(dni, codigo)}>Buscar</Button>
+      <Button onClick={handleSearch}>Buscar</Button>
 
       {data && (
         <Table className="mt-4">
@@ -87,7 +100,6 @@ function CertPersonContent() {
   );
 }
 
-// Este componente envuelve el anterior en <Suspense>
 export default function PageCertPerson() {
   return (
     <Suspense fallback={<div className="p-4">Cargando...</div>}>
