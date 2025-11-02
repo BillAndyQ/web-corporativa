@@ -1,5 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+export const dynamic = "force-dynamic";
+
+import React, { Suspense, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
@@ -14,7 +16,8 @@ interface certPerson {
   last_names: string;
 }
 
-export default function PageCertPerson() {
+// ✅ Este componente SÍ usa useSearchParams()
+function CertPersonContent() {
   const searchParams = useSearchParams();
   const [dni, setDni] = useState("");
   const [codigo, setCodigo] = useState("");
@@ -22,15 +25,17 @@ export default function PageCertPerson() {
 
   const fetchData = async (dniValue: string, codigoValue: string) => {
     if (!dniValue || !codigoValue) return;
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/search-certificados/persona?dni=${dniValue}&codigo=${codigoValue}`
-    );
-    const result = await res.json();
-    console.log(result);
-    setData(result.data || null);
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/search-certificados/persona?dni=${dniValue}&codigo=${codigoValue}`
+      );
+      const result = await res.json();
+      setData(result.data || null);
+    } catch (err) {
+      console.error("Error al obtener certificados:", err);
+    }
   };
 
-  // 🔍 Al cargar la página, lee los params y busca automáticamente
   useEffect(() => {
     const dniParam = searchParams.get("dni");
     const codigoParam = searchParams.get("codigo");
@@ -79,5 +84,14 @@ export default function PageCertPerson() {
         </Table>
       )}
     </div>
+  );
+}
+
+// Este componente envuelve el anterior en <Suspense>
+export default function PageCertPerson() {
+  return (
+    <Suspense fallback={<div className="p-4">Cargando...</div>}>
+      <CertPersonContent />
+    </Suspense>
   );
 }
