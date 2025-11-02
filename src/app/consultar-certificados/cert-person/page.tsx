@@ -10,6 +10,8 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
     n_order: string;
     src_certificate: string;
     date: string;
+    names: string;
+    last_names: string;
   }
 
 export default function PageCertPerson() {
@@ -43,6 +45,7 @@ export default function PageCertPerson() {
             <TableHead>DNI</TableHead>
             <TableHead>Codigo</TableHead>
             <TableHead>Fecha</TableHead>
+            <TableHead>Nombre</TableHead>
             <TableHead>Certificado</TableHead>
           </TableRow>
         </TableHeader>
@@ -51,6 +54,7 @@ export default function PageCertPerson() {
               <TableCell>{data.dni}</TableCell>
               <TableCell>{data.n_order}</TableCell>
               <TableCell>{data.date}</TableCell>
+              <TableCell>{data.names} {data.last_names}</TableCell>
               <TableCell>
                 <Button onClick={() => window.open(data.src_certificate, '_blank')}>Descargar</Button>
               </TableCell>
