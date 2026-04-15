@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Facebook, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Linkedin, Book } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -44,6 +44,19 @@ const Footer = () => {
                 <span className="text-gray-400">
                   Cajamarca Perú
                 </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Libro reclamaciones</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <Book size={18} className="text-blue-400" />
+                <Link href="/reclamaciones" className="text-gray-400 hover:text-white transition-colors">
+                  Reclamaciones
+                </Link>
               </div>
             </div>
           </div>
