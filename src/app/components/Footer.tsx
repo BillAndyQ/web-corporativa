@@ -48,7 +48,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Info */}
+          {/* Reclamos Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">Libro reclamaciones</h3>
             <div className="space-y-3">
