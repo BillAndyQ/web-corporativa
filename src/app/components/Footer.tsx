@@ -47,7 +47,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
           {/* Reclamos Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">Libro reclamaciones</h3>
