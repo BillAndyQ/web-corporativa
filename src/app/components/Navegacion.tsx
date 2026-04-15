@@ -52,7 +52,7 @@ const Navbar = () => {
               <Users className="w-5 h-5" />
               <span className='text-sm'>Nosotros</span>
             </Link>
-            <Link href="#contacto" className="flex items-center space-x-1 hover:text-gray-500">
+            <Link href="/reclamaciones" className="flex items-center space-x-1 hover:text-gray-500">
               <Phone className="w-5 h-5" />
               <span className='text-sm'>Contacto</span>
             </Link>
