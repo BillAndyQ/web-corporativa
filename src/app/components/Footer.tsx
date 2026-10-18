@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Facebook, Linkedin, Book } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Linkedin, Book, BadgeCheck } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -55,6 +55,12 @@ const Footer = () => {
                 <Book size={18} className="text-blue-400" />
                 <Link href="/reclamaciones" className="text-gray-400 hover:text-white transition-colors">
                   Reclamaciones
+                </Link>
+              </div>
+              <div className="flex items-center space-x-3">
+                <BadgeCheck size={18} className="text-blue-400" />
+                <Link href="/politica-calidad" className="text-gray-400 hover:text-white transition-colors">
+                  Política de Calidad
                 </Link>
               </div>
             </div>
