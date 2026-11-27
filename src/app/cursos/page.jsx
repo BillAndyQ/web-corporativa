@@ -13,7 +13,7 @@ const Cursos = () => {
 
   useEffect(() => {
     axios
-      .get('http://127.0.0.1:8000/api/public/cursos')
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/public/cursos`)
       .then((response) => {
         setCursos(response.data);
         setLoading(false);

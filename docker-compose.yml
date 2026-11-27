@@ -1,0 +1,25 @@
+# Web corporativa (Next.js standalone).
+# Uso:
+#   1. Copiar .env.example a .env y poner la URL del backend.
+#   2. docker compose up -d --build
+# Si cambia NEXT_PUBLIC_API_URL hay que reconstruir (--build): queda fijada en el JS.
+
+name: web-corporativa
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:?Falta NEXT_PUBLIC_API_URL en .env}
+    image: web-corporativa:latest
+    container_name: web_corporativa
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

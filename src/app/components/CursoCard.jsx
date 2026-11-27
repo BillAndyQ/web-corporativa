@@ -12,7 +12,7 @@ const CursoCard = ({ curso }) => {
 
   
     // Construir la URL de la imagen si src_portada existe
-    const imagenUrl = src_portada ? `http://127.0.0.1:8000/${src_portada}` : null;
+    const imagenUrl = src_portada ? `${process.env.NEXT_PUBLIC_API_URL}/${src_portada}` : null;
   
     // Función para formatear fechas
     const formatDate = (dateString) =>

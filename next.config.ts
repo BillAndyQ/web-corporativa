@@ -1,15 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-
-
-  /* config options here */
+  // Genera .next/standalone con un server.js mínimo para la imagen Docker.
+  output: "standalone",
   images: {
-    domains: ["images.unsplash.com"],
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
   },
   //reactStrictMode: true,
-
-
 };
 
 export default nextConfig;
