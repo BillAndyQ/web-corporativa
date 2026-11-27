@@ -80,32 +80,32 @@ const LogoCarousel: React.FC = () => {
     };
 
     return (
-        <div className="w-full py-10 bg-white">
+        <section className="w-full border-t border-gray-100 bg-gray-50 py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">TRABAJAMOS PARA LOS MEJORES CLIENTES</h2>
+                <h2 className="mb-10 text-center text-sm font-semibold uppercase tracking-[0.2em] text-brand-700 md:text-base">TRABAJAMOS PARA LOS MEJORES CLIENTES</h2>
 
                 <div className="relative">
                     {/* Botón anterior */}
                     <button
                         onClick={prevSlide}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none"
+                        className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full border border-gray-200 bg-white p-2 shadow-sm transition hover:border-brand-200 hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
                         aria-label="Anterior"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                     >
-                        <ChevronLeft className="h-6 w-6 text-gray-600" />
+                        <ChevronLeft className="h-5 w-5 text-gray-600" />
                     </button>
 
                     {/* Contenedor del carrusel */}
                     <div
-                        className="overflow-hidden mx-10"
+                        className="mx-12 overflow-hidden"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                     >
-                        <div className="flex justify-center items-center gap-4 sm:gap-8 transition-transform duration-500 ease-in-out">
+                        <div key={currentIndex} className="flex min-h-[150px] items-center justify-center gap-4 animate-in fade-in duration-500 sm:gap-6">
                             {visibleLogos().map((logo) => (
                                 <div key={logo.id} className="flex-shrink-0 flex flex-col items-center">
-                                    <div className="w-[150px] h-[150px] bg-white rounded-lg shadow-sm p-4 flex items-center justify-center hover:shadow-md transition-shadow duration-300">
+                                    <div className="flex h-[140px] w-[150px] items-center justify-center rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
                                         <Image
                                             src={logo.url}
                                             alt={`Logo de ${logo.name}`}
@@ -123,12 +123,12 @@ const LogoCarousel: React.FC = () => {
                     {/* Botón siguiente */}
                     <button
                         onClick={nextSlide}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none"
+                        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full border border-gray-200 bg-white p-2 shadow-sm transition hover:border-brand-200 hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
                         aria-label="Siguiente"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                     >
-                        <ChevronRight className="h-6 w-6 text-gray-600" />
+                        <ChevronRight className="h-5 w-5 text-gray-600" />
                     </button>
                 </div>
 
@@ -138,14 +138,14 @@ const LogoCarousel: React.FC = () => {
                         <button
                             key={index}
                             onClick={() => setCurrentIndex(index)}
-                            className={`h-2 rounded-full transition-all duration-300 focus:outline-none ${currentIndex === index ? 'w-6 bg-blue-600' : 'w-2 bg-gray-300'
+                            className={`h-2 rounded-full transition-all duration-300 focus:outline-none ${currentIndex === index ? 'w-6 bg-brand-600' : 'w-2 bg-gray-300 hover:bg-gray-400'
                                 }`}
                             aria-label={`Ir a slide ${index + 1}`}
                         />
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

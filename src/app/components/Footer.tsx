@@ -1,114 +1,123 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Facebook, Linkedin, Book, BadgeCheck } from 'lucide-react';
+import { Mail, MapPin, Facebook, Linkedin, Book, BadgeCheck } from 'lucide-react';
 import Link from 'next/link';
+
+const linkClass = "text-gray-400 transition-colors hover:text-white";
+const headingClass = "mb-4 text-sm font-semibold uppercase tracking-wider text-white";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-brand-950 text-white">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Nuestra Empresa</h3>
-            <p className="text-gray-400 mb-4">
+            <h3 className={headingClass}>Nuestra Empresa</h3>
+            <p className="mb-5 text-sm leading-6 text-gray-400">
               Comprometidos con la excelencia y la innovación en cada proyecto que realizamos.
             </p>
-            <div className="flex space-x-4">
-              <Link href="https://www.facebook.com/overhaulmining.eirl" target='blanck' className="text-gray-400 hover:text-white transition-colors">
-                <Facebook size={20} />
+            <div className="flex gap-2">
+              <Link
+                href="https://www.facebook.com/overhaulmining.eirl"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="rounded-full bg-white/5 p-2 text-gray-300 transition-colors hover:bg-brand-600 hover:text-white"
+              >
+                <Facebook size={18} />
               </Link>
-
-             
-              <Link href="https://www.linkedin.com/in/overhaul-mining-eirl-908b04191/recent-activity/all/" target='blanck' className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin size={20} />
+              <Link
+                href="https://www.linkedin.com/in/overhaul-mining-eirl-908b04191/recent-activity/all/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="rounded-full bg-white/5 p-2 text-gray-300 transition-colors hover:bg-brand-600 hover:text-white"
+              >
+                <Linkedin size={18} />
               </Link>
             </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Información de Contacto</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Mail size={18} className="text-blue-400" />
-                <span className="text-gray-400">
-                  servicios@overhaulmining
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone size={18} className="text-blue-400" />
-                
-              </div>
-              <div className="flex items-start space-x-3">
-                <MapPin size={18} className="text-blue-400 mt-1" />
-                <span className="text-gray-400">
-                  Cajamarca Perú
-                </span>
-              </div>
-            </div>
+            <h3 className={headingClass}>Información de Contacto</h3>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="shrink-0 text-brand-300" aria-hidden />
+                <span className="break-all text-gray-400">servicios@overhaulmining</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="mt-0.5 shrink-0 text-brand-300" aria-hidden />
+                <span className="text-gray-400">Cajamarca Perú</span>
+              </li>
+            </ul>
           </div>
+
           {/* Reclamos Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Libro reclamaciones</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Book size={18} className="text-blue-400" />
-                <Link href="/reclamaciones" className="text-gray-400 hover:text-white transition-colors">
+            <h3 className={headingClass}>Libro reclamaciones</h3>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3">
+                <Book size={18} className="shrink-0 text-brand-300" aria-hidden />
+                <Link href="/reclamaciones" className={linkClass}>
                   Reclamaciones
                 </Link>
-              </div>
-              <div className="flex items-center space-x-3">
-                <BadgeCheck size={18} className="text-blue-400" />
-                <Link href="/politica-calidad" className="text-gray-400 hover:text-white transition-colors">
+              </li>
+              <li className="flex items-center gap-3">
+                <BadgeCheck size={18} className="shrink-0 text-brand-300" aria-hidden />
+                <Link href="/politica-calidad" className={linkClass}>
                   Política de Calidad
                 </Link>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Enlaces Rápidos</h3>
-            <ul className="space-y-2">
+            <h3 className={headingClass}>Enlaces Rápidos</h3>
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/" className={linkClass}>
                   Inicio
                 </Link>
               </li>
               <li>
-                <Link href="/servicios" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/servicios" className={linkClass}>
                   Servicios
                 </Link>
               </li>
               <li>
-                <Link href="/cursos" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/cursos" className={linkClass}>
                   Cursos End
                 </Link>
               </li>
               <li>
-                <Link href="/contacto" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/contacto" className={linkClass}>
                   contacto
                 </Link>
               </li>
-
             </ul>
           </div>
 
           {/* Newsletter */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Boletín Informativo</h3>
-            <p className="text-gray-400 mb-4">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className={headingClass}>Boletín Informativo</h3>
+            <p className="mb-4 text-sm leading-6 text-gray-400">
               Suscríbete para recibir las últimas noticias y actualizaciones.
             </p>
             <form className="space-y-2">
+              <label htmlFor="footer-email" className="sr-only">
+                Tu correo electrónico
+              </label>
               <input
+                id="footer-email"
                 type="email"
                 placeholder="Tu correo electrónico"
-                className="w-full px-4 py-2 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-gray-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
               />
               <button
                 type="submit"
-                className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                className="w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-500"
               >
                 Suscribirse
               </button>
@@ -116,8 +125,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <p className="text-center text-gray-400">
+        <div className="mt-12 border-t border-white/10 pt-8">
+          <p className="text-center text-sm text-gray-500">
             © {new Date().getFullYear()} OverHaul Mining. Todos los derechos reservados.
           </p>
         </div>

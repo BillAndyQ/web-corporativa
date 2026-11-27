@@ -46,136 +46,149 @@ const galleryImages = [
 
 function Secciones() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-blue-950 text-white py-20">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+      <section className="relative overflow-hidden bg-brand-900 text-white">
+        <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-brand-600/40 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-yellow-400/10 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-24 lg:px-8">
+          <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
             Servicios Profesionales de Certificación y Capacitación
           </h1>
-          <p className="text-xl text-blue-200 mb-8">
+          <p className="mt-5 max-w-2xl text-lg text-brand-100 md:text-xl">
             Expertos en certificación, capacitación y ensayos no destructivos
           </p>
-          <div className="flex gap-4">
-            <Link href="/servicios" className="bg-yellow-500 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link href="/servicios" className="rounded-lg bg-yellow-400 px-6 py-3 font-semibold text-brand-950 shadow-lg shadow-yellow-400/20 transition-colors hover:bg-yellow-300">
               Nuestros Servicios
             </Link>
-            <button className="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
+            <Link href="#contacto" className="rounded-lg border-2 border-white/80 px-6 py-3 font-semibold transition-colors hover:bg-white hover:text-brand-900">
               Contáctanos
-            </button>
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* About Section */}
-      <div className="bg-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <Users className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-4" id="nosotros">Quiénes Somos</h3>
-              <p className="text-gray-600">
-                Somos una empresa que presta servicios de ingeniería, Ensayos No Destructivos, control de calidad de materiales con personal calificado en  uniones soldadas y termo fundidas, inspección estructural de equipos de izaje y certificación de personal operador de  grúas , montacargas, manlift y equipos de transporte.
-
-              </p>
-            </div>
-            <div className="text-center p-6">
-              <Eye className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-4">Nuestra Visión</h3>
-              <p className="text-gray-600">
-                Ser reconocida a nivel nacional como una empresa líder en mantenimiento predictivo y metrología con altos estándares de seguridad y confiabilidad.
-              </p>
-            </div>
-            <div className="text-center p-6">
-              <Target className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-4">Nuestra Misión</h3>
-              <p className="text-gray-600">
-                Brindar servicios de excelencia: Ensayos , certificación de equipos y metrología, aplicando en todo momento una cultura de calidad.
-              </p>
-            </div>
+      <section className="bg-white py-20" id="nosotros">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {[
+              {
+                icon: Users,
+                title: "Quiénes Somos",
+                text: "Somos una empresa que presta servicios de ingeniería, Ensayos No Destructivos, control de calidad de materiales con personal calificado en  uniones soldadas y termo fundidas, inspección estructural de equipos de izaje y certificación de personal operador de  grúas , montacargas, manlift y equipos de transporte.",
+              },
+              {
+                icon: Eye,
+                title: "Nuestra Visión",
+                text: "Ser reconocida a nivel nacional como una empresa líder en mantenimiento predictivo y metrología con altos estándares de seguridad y confiabilidad.",
+              },
+              {
+                icon: Target,
+                title: "Nuestra Misión",
+                text: "Brindar servicios de excelencia: Ensayos , certificación de equipos y metrología, aplicando en todo momento una cultura de calidad.",
+              },
+            ].map(({ icon: Icon, title, text }) => (
+              <div
+                key={title}
+                className="group rounded-2xl border border-gray-100 bg-gray-50 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-brand-100 hover:bg-white hover:shadow-xl"
+              >
+                <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-brand-600 text-white shadow-md shadow-brand-600/30">
+                  <Icon className="h-7 w-7" aria-hidden />
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-gray-900">{title}</h3>
+                <p className="leading-7 text-gray-600">{text}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Services Section */}
-      <div className='bg-gray-900'>
-        <div className="  container mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-white mb-8">Nuestros Servicios</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="bg-brand-950">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <h2 className="mb-10 text-3xl font-bold text-white md:text-4xl">
+            Nuestros Servicios
+            <span className="mt-3 block h-1 w-16 rounded-full bg-yellow-400" />
+          </h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} />
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       <SeccionServices/>
 
-
       {/* Gallery Section */}
-      <div className="bg-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
             {galleryImages.map((image, index) => (
-              <div key={index} className="relative aspect-square rounded-lg overflow-hidden hover:opacity-90 transition-opacity">
+              <div key={index} className="group relative aspect-square overflow-hidden rounded-xl bg-gray-100">
                 <Image
                   src={image}
                   alt={`Gallery image ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   width={800}
                   height={800}
+                  sizes="(min-width: 768px) 33vw, 50vw"
                 />
+                <div className="absolute inset-0 bg-brand-950/0 transition-colors duration-300 group-hover:bg-brand-950/10" />
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Contact Section */}
-      <div className="bg-gray-100 py-16 container mx-auto px-4">
+      <section className="bg-gray-50 py-20" id="contacto">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-10 text-3xl font-bold text-gray-900 md:text-4xl">
+            Contáctanos
+            <span className="mt-3 block h-1 w-16 rounded-full bg-brand-600" />
+          </h2>
 
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
-
-          {/* Contact Information */}
-          <div className="flex flex-col gap-8 w-full lg:w-1/2 justify-center items-start " id='contacto'>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Contáctanos</h2>
-
-            <div className="flex flex-col gap-6 w-full">
-              {/* Phone */}
-              <div className="flex items-center gap-4 p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
-                <PhoneCall className="w-8 h-8 text-blue-600" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Teléfono</h3>
-                </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {/* Phone */}
+            <div className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50">
+                <PhoneCall className="h-6 w-6 text-brand-600" aria-hidden />
               </div>
-
-              {/* Email */}
-              <div className="flex items-center gap-4 p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
-                <Mail className="w-8 h-8 text-blue-600" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600">servicios@overhaulmining.com</p>
-                </div>
+              <div>
+                <h3 className="font-semibold text-gray-900">Teléfono</h3>
               </div>
+            </div>
 
-              {/* Location */}
-              <div className="flex items-center gap-4 p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
-                <Truck className="w-8 h-8 text-blue-600" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Oficina Principal</h3>
-                  <p className="text-gray-600">Cajamarca Perú</p>
-                </div>
+            {/* Email */}
+            <a
+              href="mailto:servicios@overhaulmining.com"
+              className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50">
+                <Mail className="h-6 w-6 text-brand-600" aria-hidden />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-semibold text-gray-900">Email</h3>
+                <p className="break-all text-gray-600">servicios@overhaulmining.com</p>
+              </div>
+            </a>
+
+            {/* Location */}
+            <div className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50">
+                <Truck className="h-6 w-6 text-brand-600" aria-hidden />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900">Oficina Principal</h3>
+                <p className="text-gray-600">Cajamarca Perú</p>
               </div>
             </div>
           </div>
-
-          <div className="flex-1 w-full rounded-xl overflow-hidden shadow-lg">
-            
-          </div>
         </div>
-      </div>
-
-
+      </section>
     </div>
   );
 }

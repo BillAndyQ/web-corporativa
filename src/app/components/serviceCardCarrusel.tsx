@@ -17,51 +17,49 @@ const ServiceCardCarousel: React.FC<ServiceCardCarouselProps> = ({ images }) => 
   };
 
   return (
-    <div className="relative h-80 bg-purple-900 flex items-center justify-center overflow-hidden">
+    <div className="relative h-64 overflow-hidden bg-gray-200 md:h-full md:min-h-[18rem]">
       {images.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
-            index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            index === currentIndex ? 'z-10 opacity-100' : 'z-0 opacity-0'
           }`}
+          aria-hidden={index !== currentIndex}
         >
           {image}
         </div>
       ))}
-      
+
       {images.length > 1 && (
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-2 z-20 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-1 text-white transition-all duration-300"
-            aria-label="Previous image"
+            className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/30 p-1.5 text-white backdrop-blur transition hover:bg-black/50"
+            aria-label="Imagen anterior"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-2 z-20 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-1 text-white transition-all duration-300"
-            aria-label="Next image"
+            className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/30 p-1.5 text-white backdrop-blur transition hover:bg-black/50"
+            aria-label="Imagen siguiente"
           >
             <ChevronRight size={20} />
           </button>
+
+          <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  index === currentIndex ? 'w-5 bg-white' : 'w-1.5 bg-white/60 hover:bg-white/80'
+                }`}
+                aria-label={`Ir a la imagen ${index + 1}`}
+              />
+            ))}
+          </div>
         </>
-      )}
-      
-      {/* Indicators */}
-      {images.length > 1 && (
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex space-x-1">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? 'bg-white scale-125' : 'bg-white bg-opacity-50'
-              }`}
-              aria-label={`Go to image ${index + 1}`}
-            />
-          ))}
-        </div>
       )}
     </div>
   );

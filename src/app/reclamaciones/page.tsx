@@ -1,22 +1,45 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Navegacion from '../components/Navegacion'
+import { ArrowLeft } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Toaster } from "sonner";
+import ReclamoForm from "./reclamo-form";
 
-function Page() {
-    return (
-        /* z-[50] (o un número alto) asegura que esté por encima del footer */
-        <div className="fixed inset-0 z-[99] h-screen w-full bg-white">
-            <Navbar />
-            <Navegacion />
+export const metadata: Metadata = {
+  title: "Libro de Reclamaciones",
+  description: "Libro de Reclamación Virtual",
+};
 
-            <iframe 
-                src="https://app.overhaulmining.com/reclamaciones" 
-                className="h-full w-full border-0"
-                title="Libro de Reclamaciones"
-                allowFullScreen
-            />
+export default function LibroReclamacionesPage() {
+  return (
+    <div className="min-h-full bg-muted/40">
+      <a
+        href="#contenido"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-3 focus:py-2 focus:shadow"
+      >
+        Ir al contenido
+      </a>
+
+      <header className="border-b bg-background">
+        <div className="mx-auto flex max-w-4xl items-center px-4 py-3">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="size-4" />
+            Volver al sitio principal
+          </Link>
         </div>
-    )
-}
+      </header>
 
-export default Page
+      <main id="contenido" className="mx-auto max-w-4xl px-4 py-8">
+        <ReclamoForm />
+      </main>
+
+      <footer className="border-t bg-background py-4 text-center text-sm text-muted-foreground">
+        Copyright © {new Date().getFullYear()} Reclamaciones
+      </footer>
+
+      <Toaster richColors position="top-center" />
+    </div>
+  );
+}

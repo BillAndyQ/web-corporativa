@@ -9,6 +9,19 @@ export default {
   theme: {
   	extend: {
   		colors: {
+  			brand: {
+  				50: '#eef6fc',
+  				100: '#d6e9f7',
+  				200: '#a9d0ee',
+  				300: '#6fb0e0',
+  				400: '#2f86c8',
+  				500: '#0a6aae',
+  				600: '#04559a',
+  				700: '#05467e',
+  				800: '#083a66',
+  				900: '#0b2f52',
+  				950: '#071d35'
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

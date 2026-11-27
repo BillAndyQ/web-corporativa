@@ -10,7 +10,6 @@ const CursoCard = ({ curso }) => {
       fecha_final,
     } = curso;
 
-    const textcolor= "text-gray-100";
   
     // Construir la URL de la imagen si src_portada existe
     const imagenUrl = src_portada ? `http://127.0.0.1:8000/${src_portada}` : null;
@@ -22,40 +21,44 @@ const CursoCard = ({ curso }) => {
         : 'No especificada';
   
     return (
-      <div className="bg-gray-700   flex flex-col h-auto py-5 px-2 rounded-lg">
+      <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
         {imagenUrl && (
-          <img
-            src={imagenUrl}
-            alt={`Portada del curso ${nombre_curso}`}
-            className="w-full h-48 object-cover rounded-lg"
-            width={400}
-            height={400}
-          />
-        )}
-        <div className="p-4">
-          <h2 className={`text-xl font-semibold ${textcolor}`}>{nombre_curso}</h2>
-          <h3 className={`text-lg ${textcolor} pt-1`}>{titulo}</h3>
-          <p className={`text-gray-400 pt-2 ${textcolor}`}>{descripcion}</p>
-          <div className="pt-4">
-            <p className={`text-sm ${textcolor}`}>
-              <strong>Fecha de inicio:</strong> {formatDate(fecha_inicio)}
-            </p>
-            <p className={`text-sm ${textcolor}`}>
-              <strong>Fecha de finalización:</strong> {formatDate(fecha_final)}
-            </p>
+          <div className="overflow-hidden">
+            <img
+              src={imagenUrl}
+              alt={`Portada del curso ${nombre_curso}`}
+              className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              width={400}
+              height={400}
+            />
           </div>
+        )}
+        <div className="flex flex-1 flex-col p-6">
+          <h2 className="text-xl font-bold text-gray-900">{nombre_curso}</h2>
+          <h3 className="pt-1 text-base font-medium text-brand-700">{titulo}</h3>
+          <p className="line-clamp-4 pt-3 text-sm leading-6 text-gray-600">{descripcion}</p>
+          <dl className="mt-auto grid grid-cols-2 gap-3 border-t border-gray-100 pt-4 mt-5 text-sm">
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500">Fecha de inicio:</dt>
+              <dd className="mt-0.5 text-gray-900">{formatDate(fecha_inicio)}</dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500">Fecha de finalización:</dt>
+              <dd className="mt-0.5 text-gray-900">{formatDate(fecha_final)}</dd>
+            </div>
+          </dl>
         </div>
 
-        <div className="px-3">
+        <div className="px-6 pb-6">
           <Link
             href={`/cursos/${curso.id}`}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+            className="inline-flex w-full items-center justify-center rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
           >
             Ver curso
           </Link>
         </div>
-      </div>
+      </article>
     );
   };
-  
+
   export default CursoCard;

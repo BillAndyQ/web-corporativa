@@ -21,7 +21,7 @@
 
     --popover-foreground: 0 0% 3.9%;
 
-    --primary: 0 0% 9%;
+    --primary: 208 95% 31%;
 
     --primary-foreground: 0 0% 98%;
 
@@ -45,7 +45,7 @@
 
     --input: 0 0% 89.8%;
 
-    --ring: 0 0% 3.9%;
+    --ring: 208 95% 31%;
 
     --chart-1: 12 76% 61%;
 
@@ -119,5 +119,21 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 8rem;
+  }
+  body {
+    @apply antialiased;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

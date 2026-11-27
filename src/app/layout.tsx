@@ -10,7 +10,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <title>Mina de Servicios | Ofrecemos soluciones en minería</title>
         <meta
@@ -18,18 +18,14 @@ export default function RootLayout({
           content="Descubre los servicios especializados que ofrece nuestra mina, con tecnología de punta y compromiso con el medio ambiente."
         />
       </head>
-      <body>
+      <body className="flex min-h-screen flex-col bg-white text-gray-900">
         <Providers>
-          <div className="fixed w-full z-50">
+          <header className="sticky top-0 z-50 w-full shadow-sm">
             <Navbar />
             <Navegacion />
-          </div>
-          <div className="relative w-full top-28">
-            {children}
-          </div>
-          <div className="relative top-28 w-full bottom-0 z-50">
-            <Footer />
-          </div>
+          </header>
+          <main className="w-full flex-1">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>
