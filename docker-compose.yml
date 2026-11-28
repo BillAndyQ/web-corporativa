@@ -1,8 +1,10 @@
 # Web corporativa (Next.js standalone).
 # Uso:
-#   1. Copiar .env.example a .env y poner la URL del backend.
-#   2. docker compose up -d --build
+#   1. Copiar .env.example a .env y completar los valores.
+#   2. Levantar antes OVERSITE (OVERHAUL/docker-compose.yml): crea la red "oversite_app".
+#   3. docker compose up -d --build
 # Si cambia NEXT_PUBLIC_API_URL hay que reconstruir (--build): queda fijada en el JS.
+# OVERSITE_API_URL y TURNSTILE_SITE_KEY se leen al ejecutar: basta con reiniciar.
 
 name: web-corporativa
 
@@ -15,11 +17,25 @@ services:
     image: web-corporativa:latest
     container_name: web_corporativa
     restart: unless-stopped
+    environment:
+      # Libro de Reclamaciones: el servidor de Next llama al backend de OVERSITE por la red interna
+      OVERSITE_API_URL: ${OVERSITE_API_URL:-http://backend:3000/api}
+      TURNSTILE_SITE_KEY: ${TURNSTILE_SITE_KEY:-}
     ports:
       - "${WEB_PORT:-3000}:3000"
+    networks:
+      - default
+      - oversite
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
+
+networks:
+  # Red "app" del proyecto oversite (frontend <-> backend). La base de datos queda fuera,
+  # en la red interna "datos": desde aquí solo se ve el backend y el frontend de OVERSITE.
+  oversite:
+    external: true
+    name: oversite_app

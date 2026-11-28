@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { connection } from "next/server";
 import { Toaster } from "sonner";
 import ReclamoForm from "./reclamo-form";
 
@@ -9,7 +10,12 @@ export const metadata: Metadata = {
   description: "Libro de Reclamación Virtual",
 };
 
-export default function LibroReclamacionesPage() {
+export default async function LibroReclamacionesPage() {
+  // La clave del sitio de Turnstile se lee al servir la página (no al compilar):
+  // cambiarla en el .env solo requiere reiniciar el contenedor.
+  await connection();
+  const siteKey = process.env.TURNSTILE_SITE_KEY;
+
   return (
     <div className="min-h-full bg-muted/40">
       <a
@@ -32,7 +38,7 @@ export default function LibroReclamacionesPage() {
       </header>
 
       <main id="contenido" className="mx-auto max-w-4xl px-4 py-8">
-        <ReclamoForm />
+        <ReclamoForm siteKey={siteKey} />
       </main>
 
       <footer className="border-t bg-background py-4 text-center text-sm text-muted-foreground">

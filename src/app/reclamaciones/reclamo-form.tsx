@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2, Printer } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm, useWatch, type Control, type FieldPath } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -32,6 +32,7 @@ import {
   type ReclamoCrearInput,
 } from "@/lib/reclamo-schema";
 import { cn } from "@/lib/utils";
+import { Turnstile, type TurnstileHandle } from "./turnstile";
 
 type Campo = FieldPath<ReclamoCrearInput>;
 
@@ -244,9 +245,12 @@ function ReclamoEnviado({
 
 /* ---------- Formulario ---------- */
 
-export default function ReclamoForm() {
+export default function ReclamoForm({ siteKey }: { siteKey?: string }) {
   const [numeroHoja, setNumeroHoja] = useState("------");
   const [enviado, setEnviado] = useState<{ numero: string; fecha: Date; correo: string } | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [faltaCaptcha, setFaltaCaptcha] = useState(false);
+  const captcha = useRef<TurnstileHandle>(null);
 
   const form = useForm<ReclamoCrearInput, unknown, ReclamoCrear>({
     resolver: zodResolver(ReclamoCrearSchema),
@@ -268,8 +272,14 @@ export default function ReclamoForm() {
   }, [cargarNumero]);
 
   async function onSubmit(values: ReclamoCrear) {
-    const payload =
+    if (!captchaToken) {
+      setFaltaCaptcha(true);
+      toast.error("Completa la verificación de seguridad");
+      return;
+    }
+    const datos =
       values.menor_edad === "si" ? values : { ...values, apoderado_nombre: "", apoderado_documento: "" };
+    const payload = { ...datos, captcha_token: captchaToken };
     try {
       const res = await fetch("/api/reclamaciones", {
         method: "POST",
@@ -279,6 +289,8 @@ export default function ReclamoForm() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         toast.error(data.message ?? "No se pudo registrar el reclamo");
+        // Cada token sirve para un solo envío: se pide otro para el siguiente intento
+        captcha.current?.reset();
         return;
       }
       setEnviado({ numero: data.numero, fecha: new Date(data.fecha_emision), correo: values.correo });
@@ -286,6 +298,7 @@ export default function ReclamoForm() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {
       toast.error("Error de conexión. Inténtalo nuevamente.");
+      captcha.current?.reset();
     }
   }
 
@@ -295,6 +308,8 @@ export default function ReclamoForm() {
         {...enviado}
         onNuevo={() => {
           reset(valoresIniciales);
+          setCaptchaToken(null);
+          setFaltaCaptcha(false);
           setEnviado(null);
           cargarNumero();
         }}
@@ -575,7 +590,31 @@ export default function ReclamoForm() {
               </li>
             </ul>
 
-            <Button type="submit" size="lg" disabled={formState.isSubmitting} className="self-end">
+            <div className="flex flex-col gap-2">
+              <p className="text-sm font-medium">
+                Verificación de seguridad
+                <Requerido />
+              </p>
+              {siteKey ? (
+                <Turnstile
+                  ref={captcha}
+                  siteKey={siteKey}
+                  onToken={(token) => {
+                    setCaptchaToken(token);
+                    if (token) setFaltaCaptcha(false);
+                  }}
+                />
+              ) : (
+                <p className="text-sm text-destructive">
+                  La verificación de seguridad no está disponible. Inténtalo más tarde.
+                </p>
+              )}
+              {faltaCaptcha && siteKey && (
+                <p className="text-sm font-medium text-destructive">Completa la verificación de seguridad</p>
+              )}
+            </div>
+
+            <Button type="submit" size="lg" disabled={formState.isSubmitting || !siteKey} className="self-end">
               {formState.isSubmitting && <Loader2 className="animate-spin" />}
               Enviar reclamo
             </Button>
